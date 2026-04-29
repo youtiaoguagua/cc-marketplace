@@ -1,7 +1,7 @@
 ---
 name: basic-rule
-description: all project need load this skill
-disable-model-invocation: false
+description: Load automatically at the start of every session and when working on any task.
+disable-model-invocation: true
 ---
 
 # 工作规范
