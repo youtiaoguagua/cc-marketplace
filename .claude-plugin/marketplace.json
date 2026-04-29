@@ -1,0 +1,13 @@
+{
+  "name": "youtiaoguagua-marketplace",
+  "owner": {
+    "name": "youtiaoguagua"
+  },
+  "plugins": [
+    {
+      "name": "main-rule",
+      "source": "./main-rule",
+      "description": "Adds a /basic-rule skill for coding"
+    }
+  ]
+}
