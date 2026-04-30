@@ -2,6 +2,8 @@
 
 给 Claude Code 用的插件集合。
 
+<p align="center"><img src="image/banner.png" alt="CC Kit Banner" width="80%" /></p>
+
 ## 安装
 
 ```bash
@@ -64,7 +66,7 @@
 | [`/read-url`](work-skill/skills/read-url/SKILL.md) | 任何网页 | URL 抓下来格式混乱、JS 重页面抓不到、GitHub 触发限速 | Exa → Jina Reader → WebFetch 三级降级，选对工具。 |
 | [`/write`](work-skill/skills/write/SKILL.md) | 写作或编辑 | 写出来的文字僵硬公式化，像机器翻译，不像人说的话 | 中英文自然表达，消除僵硬公式化措辞。 |
 
-<details>
+<details open>
 <summary><b>最佳使用范式</b></summary>
 
 **范式一：从零开发新功能**
@@ -107,7 +109,7 @@
 
 </details>
 
-<details>
+<details open>
 <summary><b>核心理念与设计决策</b></summary>
 
 所有技能围绕一个约束设计：**Claude 的 context window 是最稀缺资源**。性能随上下文增长而下降。
