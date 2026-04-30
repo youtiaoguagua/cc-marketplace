@@ -8,6 +8,11 @@
       "name": "main-rule",
       "source": "./main-rule",
       "description": "Adds a /basic-rule skill for coding"
+    },
+    {
+      "name": "work-skill",
+      "source": "./work-skill",
+      "description": "12 skills covering the full development workflow: explore, think, code, check, debug, session, health, scale, design, learn, read-url, write"
     }
   ]
 }
