@@ -32,13 +32,14 @@
 
 ### work-skill
 
-> 工作流 skill 包。基于 [Claude Code Best Practices](https://code.claude.com/docs/en/best-practices) 提炼 12 个技能，覆盖完整开发工作流。
+> 工作流 skill 包。基于 [Claude Code Best Practices](https://code.claude.com/docs/en/best-practices) 提炼 13 个技能，覆盖完整开发工作流。
 
 **维度一：工作流阶段（核心闭环）**
 
 | Skill | 触发时机 | 解决什么问题 | 描述 |
 |-------|---------|-------------|------|
 | [`/explore`](work-skill/skills/explore/SKILL.md) | 接触陌生代码时 | 直接开写，改错文件、破坏既有模式、塞爆上下文 | 只读探索，映射结构与模式。用 subagent 隔离上下文。绝不编辑文件。 |
+| [`/spec`](work-skill/skills/spec/SKILL.md) | 需求模糊、新功能/项目启动 | 写到一半发现需求理解错了，白干 | 亮假设 → interview 深挖 → 产出结构化 spec → 人工门控审核。Spec 是合约。 |
 | [`/think`](work-skill/skills/think/SKILL.md) | 动手构建前 | 需求没想清楚就开始写，写到一半发现方向错了 | 质疑需求 → 压力测试设计 → 产出书面计划。模糊需求用 interview 模式深挖。 |
 | [`/code`](work-skill/skills/code/SKILL.md) | 实现阶段 | 写好几百行才跑测试，结果一堆错，改不动了 | 先写测试 → 实现 → 验证 → 下一步。失败即停，不堆积问题。 |
 | [`/check`](work-skill/skills/check/SKILL.md) | 完成任务后、合并前 | "看起来能用了"但实际有遗留 debug 代码、硬编码、未覆盖的边界情况 | 审查 diff → 跑测试 → 标记危险操作 → 用证据说话。 |
@@ -72,10 +73,12 @@
 **范式一：从零开发新功能**
 
 ```
-/explore → /think → /code → /check
-  ↓         ↓        ↓        ↓
-摸清地形   产出计划   步步验证   合并前审查
+/explore → /spec → /code → /check
+  ↓         ↓       ↓        ↓
+摸清地形   产出spec  步步验证   合并前审查
 ```
+
+> Spec 用一个 session，实现用另一个新 session。
 
 **范式二：修 bug**
 
@@ -96,7 +99,7 @@
 **范式四：批量操作**
 
 ```
-/think → /scale
+/spec → /scale
 ```
 
 > 先在 2-3 个文件上验证 prompt，再全量跑。
@@ -114,11 +117,12 @@
 
 所有技能围绕一个约束设计：**Claude 的 context window 是最稀缺资源**。性能随上下文增长而下降。
 
-1. **验证闭环** — `/code` 和 `/check` 强制可验证的成功标准，不给"看起来好了"任何空间
-2. **Plan Mode 前置** — `/think` 分 interview（澄清需求）和 design（技术方案）两个子阶段
-3. **失败模式防御** — `/debug` 内建"两次修正即清上下文"规则
-4. **CLAUDE.md 减肥** — `/health` 核心原则：删掉 Claude 自己能推断的东西
-5. **上下文即资源** — `/session` 独立成 skill，覆盖 clear / compact / rewind / resume
+1. **Spec 驱动** — `/spec` 四阶段门控流程：亮假设 → 产出 spec → 任务拆分 → 新 session 执行。Spec 是合约，写完再动手。
+2. **验证闭环** — `/code` 和 `/check` 强制可验证的成功标准，不给"看起来好了"任何空间
+3. **Plan Mode 前置** — `/think` 分 interview（澄清需求）和 design（技术方案）两个子阶段
+4. **失败模式防御** — `/debug` 内建"两次修正即清上下文"规则
+5. **CLAUDE.md 减肥** — `/health` 核心原则：删掉 Claude 自己能推断的东西
+6. **上下文即资源** — `/session` 独立成 skill，覆盖 clear / compact / rewind / resume
 
 </details>
 
