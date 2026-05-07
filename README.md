@@ -73,9 +73,9 @@
 **范式一：从零开发新功能**
 
 ```
-/explore → /spec → /code → /check
-  ↓         ↓       ↓        ↓
-摸清地形   产出spec  步步验证   合并前审查
+/explore → /spec → /think → /code → /check
+  ↓         ↓       ↓        ↓        ↓
+摸清地形   写清需求  规划方案   步步验证   合并前审查
 ```
 
 > Spec 用一个 session，实现用另一个新 session。
