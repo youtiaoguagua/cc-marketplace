@@ -158,8 +158,8 @@ The spec is a living document, not a one-time artifact:
 
 | Scenario | Format | Location |
 |----------|--------|----------|
-| Small feature, solo project | Single `SPEC.md` | Project root |
-| Large feature touching DB + API + UI | Three files: `requirements.md` / `design.md` / `tasks.md` | `.claude/specs/<feature>/` |
+| Small feature | Single `spec/<feature>.md` | `spec/` directory |
+| Large feature touching DB + API + UI | Three files: `requirements.md` / `design.md` / `tasks.md` | `spec/<feature>/` |
 | Architectural decisions (auth strategy, caching, event queue) | ADR | `docs/adr/0001-<title>.md` |
 | Long-term coding standards | CLAUDE.md | Project root |
 
